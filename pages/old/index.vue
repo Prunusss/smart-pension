@@ -2,22 +2,31 @@
     <div class="outdiv">
         <cli-title class="titleClass" ></cli-title>
         <cli-menu class="menuClass" :pageIndex="pageIndex" ></cli-menu>
-        <div class="bodyDiv" v-if="ifshow">
+        <div class="bodyClass" v-if="ifshow">
             <el-card shadow="hover" :body-style="{ padding: '0px' }" style="margin-top: 60px; min-height: 300px;">
                 <div class="titleDiv">
-                    <p class="titleMsg" >通知</p>
-                    <p class="showAll" @click="to_notify_page">查看全部</p>
+                    <p class="titleMsg" >老人信息管理</p>
+<!--                    <p class="showAll" @click="to_notify_page">查看全部</p>-->
                 </div>
                 <div  style="display: table; width: 100%; padding-left: 10px; padding-top: 20px; padding-bottom:15px; padding-right: 10px;text-align: center">
                     <div style="display: table-row">
-                        <div class="tableTitle" style="width: 40%; text-align: center;padding-left: 10px">
-                            标题
+                        <div class="tableTitle" style="text-align: center;padding-left:20px;width: 40px">
+
                         </div>
-                        <div class="tableTitle" style="width: 25%; text-align: center">
-                            时间
+                        <div class="tableTitle" style="text-align: center">
+                            姓名
                         </div>
-                        <div class="tableTitle" style="width: 20%; text-align: center">
-                            发布人
+                        <div class="tableTitle" style="text-align: center">
+                            性别
+                        </div>
+                        <div class="tableTitle" style="text-align: center">
+                            手机
+                        </div>
+                        <div class="tableTitle" style="text-align: center">
+                            身份证号
+                        </div>
+                        <div class="tableTitle" style="text-align: center">
+                            生日
                         </div>
                         <div class="tableTitle">
                         </div>
@@ -29,72 +38,108 @@
                         </div>
                     </div>
                     <div :class="{'tablerow':true, 'grayLine': (1 === 1)}" style="display: table-row;" >
-                        <div class="tableCell fist" style="text-align: left;padding-left: 50px; " >
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;padding-left:20px;width: 40px">
                             <!--                            {{item.title}}-->
-                            测试
+                            <img src="../../static/3.png" style="border-radius: 50%;width: 40px;height: 40px;">
                         </div>
-                        <div class="tableCell" style="text-align: center">
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
                             <!--                            {{item.create_time}}-->
                             2020-07-04 10:34
                         </div>
-                        <div class="tableCell" style="text-align: center">
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
                             <!--                            {{item.publisherInfo.name}}-->
                             李涛
                         </div>
-                        <div class="tableCell"  style="width: 50px">
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
+                            <!--                            {{item.create_time}}-->
+                            2020-07-04 10:34
+                        </div>
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
+                            <!--                            {{item.create_time}}-->
+                            2020-07-04 10:34
+                        </div>
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
+                            <!--                            {{item.publisherInfo.name}}-->
+                            李涛
+                        </div>
+                        <div class="tableCell"  style="width: 50px;vertical-align:middle;">
                             <el-button size="mini" @click="readNotify(item)" >详情</el-button>
                         </div>
-                        <div class="tableCell" style="width: 50px">
-                            <el-button size="mini" @click="deleteNotifyList(item)">删除</el-button>
+                        <div class="tableCell" style="width: 50px;vertical-align:middle;">
+                            <el-button size="mini" @click="update(item)">编辑</el-button>
                         </div>
-                        <div class="tableCell" style="width: 70px">
-                            <el-button size="mini" @click="toUnRead(item)">3人未读 | {{5}}人已读</el-button>
+                        <div class="tableCell" style="width: 70px;vertical-align:middle;">
+                            <el-button size="mini" @click="deleteNotifyList(item)">删除</el-button>
                         </div>
                     </div>
                     <div :class="{'tablerow':true, 'grayLine': (1 === 0)}" style="display: table-row;" >
-                        <div class="tableCell fist" style="text-align: left;padding-left: 50px; " >
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;padding-left:20px;width: 40px">
                             <!--                            {{item.title}}-->
-                            写个假的
+                            <img src="../../static/3.png" style="border-radius: 50%;width: 40px;height: 40px;">
                         </div>
-                        <div class="tableCell" style="text-align: center">
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
                             <!--                            {{item.create_time}}-->
                             2020-07-04 10:34
                         </div>
-                        <div class="tableCell" style="text-align: center">
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
                             <!--                            {{item.publisherInfo.name}}-->
                             李涛
                         </div>
-                        <div class="tableCell"  style="width: 50px">
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
+                            <!--                            {{item.create_time}}-->
+                            2020-07-04 10:34
+                        </div>
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
+                            <!--                            {{item.create_time}}-->
+                            2020-07-04 10:34
+                        </div>
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
+                            <!--                            {{item.publisherInfo.name}}-->
+                            李涛
+                        </div>
+                        <div class="tableCell"  style="width: 50px;vertical-align:middle;">
                             <el-button size="mini" @click="readNotify(item)" >详情</el-button>
                         </div>
-                        <div class="tableCell" style="width: 50px">
-                            <el-button size="mini" @click="deleteNotifyList(item)">删除</el-button>
+                        <div class="tableCell" style="width: 50px;vertical-align:middle;">
+                            <el-button size="mini" @click="update(item)">编辑</el-button>
                         </div>
-                        <div class="tableCell" style="width: 70px">
-                            <el-button size="mini" @click="toUnRead(item)">3人未读 | {{5}}人已读</el-button>
+                        <div class="tableCell" style="width: 70px;vertical-align:middle;">
+                            <el-button size="mini" @click="deleteNotifyList(item)">删除</el-button>
                         </div>
                     </div>
                     <div :class="{'tablerow':true, 'grayLine': (1 === 1)}" style="display: table-row;" >
-                        <div class="tableCell fist" style="text-align: left;padding-left: 50px; " >
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;padding-left:20px;width: 40px">
                             <!--                            {{item.title}}-->
-                            啦啦啦
+                            <img src="../../static/3.png" style="border-radius: 50%;width: 40px;height: 40px;">
                         </div>
-                        <div class="tableCell" style="text-align: center">
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
                             <!--                            {{item.create_time}}-->
                             2020-07-04 10:34
                         </div>
-                        <div class="tableCell" style="text-align: center">
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
                             <!--                            {{item.publisherInfo.name}}-->
                             李涛
                         </div>
-                        <div class="tableCell"  style="width: 50px">
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
+                            <!--                            {{item.create_time}}-->
+                            2020-07-04 10:34
+                        </div>
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
+                            <!--                            {{item.create_time}}-->
+                            2020-07-04 10:34
+                        </div>
+                        <div class="tableCell" style="text-align: center;vertical-align:middle;">
+                            <!--                            {{item.publisherInfo.name}}-->
+                            李涛
+                        </div>
+                        <div class="tableCell"  style="width: 50px;vertical-align:middle;">
                             <el-button size="mini" @click="readNotify(item)" >详情</el-button>
                         </div>
-                        <div class="tableCell" style="width: 50px">
-                            <el-button size="mini" @click="deleteNotifyList(item)">删除</el-button>
+                        <div class="tableCell" style="width: 50px;vertical-align:middle;">
+                            <el-button size="mini" @click="update(item)">编辑</el-button>
                         </div>
-                        <div class="tableCell" style="width: 70px">
-                            <el-button size="mini" @click="toUnRead(item)">3人未读 | {{5}}人已读</el-button>
+                        <div class="tableCell" style="width: 70px;vertical-align:middle;">
+                            <el-button size="mini" @click="deleteNotifyList(item)">删除</el-button>
                         </div>
                     </div>
                 </div>
@@ -102,7 +147,7 @@
                     <div></div>
 
                     <div style="padding-right: 15px" >
-                        <el-button type="primary" size="mini" @click="toNewNotify">新增公告</el-button>
+                        <el-button type="primary" size="mini" @click="toNewNotify">新增人员</el-button>
                     </div>
                 </div>
             </el-card>
@@ -165,8 +210,64 @@
 
 <style scoped>
     @import "../../assets/css/page/normalLayout.css";
-</style>
+    .titleDiv{
+        background-color: #DDF1FF;
+        padding: 10px 20px;
 
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .titleMsg{
+        font-family: 黑体;
+        font-size: 20px;
+    }
+    .showAll{
+        font-size: 12px;
+        color: #11A0FF;
+    }
+    .tableTitle{
+        display: table-cell;
+        font-size: 15px;
+        padding: 5px;
+        font-family: 黑体;
+        font-weight: bold;
+
+    }
+    .tableCell{
+        display: table-cell;
+        font-size: 15px;
+        padding: 5px;
+    }
+    .fist{
+        display: flex;
+        position: relative;
+        top: -5px;
+    }
+    .fist::before{
+        display: block;
+        content: "";
+        height: 10px;
+        width: 10px;
+        border-radius: 5px;
+
+        background-color: #5b8bff;
+        position: relative;
+        left: -25px;
+        top: 5px;
+    }
+    .showAll:hover{
+        cursor: pointer;
+    }
+    .bodyClass{
+        min-width: 850px;
+        margin-left: 150px;
+        padding: 20px;
+    }
+    .grayLine{
+        background-color: #e4efff;
+    }
+</style>
 
 
 

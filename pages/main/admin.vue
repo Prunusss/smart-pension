@@ -4,8 +4,6 @@
         <cli-menu class="menuClass" :pageIndex="pageIndex"></cli-menu>
 
         <div class="bodyClass">
-<!--            <notify_list_table :showType="showType" style="width: 100%; margin-top: 20px;margin-bottom: 30px"> </notify_list_table>-->
-
             <el-card shadow="hover" :body-style="{ padding: '0px' }" style="margin-top: 60px; min-height: 300px;">
                 <div class="titleDiv">
                     <p class="titleMsg" >通知</p>
@@ -109,7 +107,6 @@
                     </div>
                 </div>
             </el-card>
-
             <div>
 
 <!--                <div class="body2">-->
