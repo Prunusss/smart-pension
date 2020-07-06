@@ -1,0 +1,54 @@
+<template>
+    <div class="outDiv">
+        <cli-title class="titleClass"></cli-title>
+        <cli-menu class="menuClass" :pageIndex="pageIndex"></cli-menu>
+
+        <div class="bodyDiv">
+            <position :positionName="position.name"></position>
+            <list v-show="roleType == 0" :pageIndex="pageIndex" :roleType="roleType" style="margin-top: 20px"></list>
+            <list-stu :pageIndex="pageIndex" v-show="roleType == 1" :roleType="roleType" style="margin-top: 20px"></list-stu>
+        </div>
+    </div>
+</template>
+
+<script>
+    import Cookies from 'js-cookie'
+    import List from "../../components/message/list";
+    import ListStu from "../../components/message/list_stu";
+    import CliTitle from "../../components/base/cliTitle";
+    import CliMenu from "../../components/base/cliMenu";
+    import Position from "../../components/base/position";
+    import DataEdit from "../../components/message/message_edit";
+    import Message_detail from "../../components/message/message_detail";
+    // import PaperEdit from "../../components/paper/paper_edit";
+    export default {
+        name: "add",
+        // components: {PaperEdit, Message_detail, DataEdit, Position, CliMenu, CliTitle,List},
+        components: {Message_detail, DataEdit, Position, CliMenu, CliTitle,List,ListStu},
+        data(){
+            return{
+                pageIndex: "6",
+                roleType: Cookies.get('type'),
+                position: {
+                    name: '问卷征集',
+                    haveBack: true,
+
+                },
+                viewType: false,
+            };
+        },
+
+        methods:{
+            // 点击返回按钮
+            clickBack(){
+                alert('返回')
+            }
+        }
+
+    }
+</script>
+
+<style scoped>
+    @import "../../assets/css/page/normalLayout.css";
+
+</style>
