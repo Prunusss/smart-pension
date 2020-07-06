@@ -142,11 +142,11 @@
           this.activeIndex = "112"
         },
         toCLiHomePage(){
-          if(this.type === '0') {
+          // if(this.type === '0') {
             this.$router.push({path: `/main/admin`})
-          } else if (this.type === '1'){
-            this.$router.push({path: `/main/user`})
-          }
+          // } else if (this.type === '1'){
+          //   this.$router.push({path: `/main/user`})
+          // }
           this.activeIndex = "1"
         },
         toCLiAuditorPage(){
@@ -215,7 +215,7 @@
           this.activeIndex = "5"
         },
         toCameraPage(){
-          this.$router.push({path: '/personalCenter/cliPercenterPage'})
+          this.$router.push({path: '/camera'})
           this.activeIndex = "7"
         },
         logout(){

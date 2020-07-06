@@ -147,7 +147,7 @@
                     <div></div>
 
                     <div style="padding-right: 15px" >
-                        <el-button type="primary" size="mini" @click="toNewNotify">新增人员</el-button>
+                        <el-button style="background-color: rgb(106,184,216);color: white" size="mini" @click="toNewNotify">新增人员</el-button>
                     </div>
                 </div>
             </el-card>
