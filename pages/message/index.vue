@@ -7,85 +7,105 @@
                 <div class="titleDiv">
                     <p class="titleMsg" >情感分析检测</p>
                 </div>
-                <div  style="display: table; width: 100%; padding-left: 10px; padding-top: 20px; padding-bottom:15px; padding-right: 10px;text-align: center">
-                    <div style="display: table-row">
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                    </div>
+                <div style="display: table; width: 100%; padding: 20px 15px 15px;text-align: center">
+                    <el-row>
+                        <el-col :span="8" v-for="(o, index) in 6" :key="o" >
+                            <el-card :body-style="{ padding: '0px' }" style="margin-bottom: 20px;margin-right: 20px">
+                                <img src="../../static/kk.jpg" class="image">
+                                <div style="padding: 14px;">
+                                    <span style="font-weight: bold">事件：情感检测</span>
+                                    <div class="bottom clearfix">
+                                        <span style="float: left">老人姓名：姓名{{index}}</span>
+                                        <span style="color: #999;float: right">{{'2020/7/6 00:00:00'}}</span>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </el-col>
+                    </el-row>
                 </div>
             </el-card>
             <el-card shadow="hover" :body-style="{ padding: '0px' }" style="margin-top: 20px; min-height: 300px;">
-                <div class="titleDiv">
+                <div class="titleDiv" style="background-color: rgb(239,242,239)">
                     <p class="titleMsg" >老人义工交互检测</p>
                 </div>
-                <div  style="display: table; width: 100%; padding-left: 10px; padding-top: 20px; padding-bottom:15px; padding-right: 10px;text-align: center">
-                    <div style="display: table-row">
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                    </div>
+                <div style="display: table; width: 100%; padding: 20px 15px 15px;text-align: center">
+                    <el-row>
+                        <el-col :span="8" v-for="(o, index) in 6" :key="o" >
+                            <el-card :body-style="{ padding: '0px' }" style="margin-bottom: 20px;margin-right: 20px">
+                                <img src="../../static/kylin.jpg" class="image">
+                                <div style="padding: 14px;">
+                                    <span style="font-weight: bold">事件：老人义工交互检测</span>
+                                    <div class="bottom clearfix">
+                                        <span style="float: left">老人姓名：姓名{{index}}</span>
+                                        <span style="color: #999;float: right">{{'2020/7/6 00:00:00'}}</span>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </el-col>
+                    </el-row>
                 </div>
             </el-card>
             <el-card shadow="hover" :body-style="{ padding: '0px' }" style="margin-top: 20px; min-height: 300px;">
-                <div class="titleDiv">
+                <div class="titleDiv" style="background-color: rgb(254,240,240)">
                     <p class="titleMsg" >跌倒检测</p>
                 </div>
-                <div  style="display: table; width: 100%; padding-left: 10px; padding-top: 20px; padding-bottom:15px; padding-right: 10px;text-align: center">
-                    <div style="display: table-row">
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                    </div>
+                <div style="display: table; width: 100%; padding: 20px 15px 15px;text-align: center">
+                    <el-row>
+                        <el-col :span="8" v-for="(o, index) in 6" :key="o" >
+                            <el-card :body-style="{ padding: '0px' }" style="margin-bottom: 20px;margin-right: 20px">
+                                <img src="../../static/kk.jpg" class="image">
+                                <div style="padding: 14px;">
+                                    <span style="font-weight: bold">事件：跌倒检测</span>
+                                    <div class="bottom clearfix">
+                                        <span style="float: left">老人姓名：姓名{{index}}</span>
+                                        <span style="color: #999;float: right">{{'2020/7/6 00:00:00'}}</span>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </el-col>
+                    </el-row>
                 </div>
             </el-card>
             <el-card shadow="hover" :body-style="{ padding: '0px' }" style="margin-top: 20px; min-height: 300px;">
-                <div class="titleDiv">
+                <div class="titleDiv" style="background-color: rgb(253,246,236)">
                     <p class="titleMsg" >陌生人检测</p>
                 </div>
-                <div  style="display: table; width: 100%; padding-left: 10px; padding-top: 20px; padding-bottom:15px; padding-right: 10px;text-align: center">
-                    <div style="display: table-row">
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                    </div>
+                <div style="display: table; width: 100%; padding: 20px 15px 15px;text-align: center">
+                    <el-row>
+                        <el-col :span="8" v-for="(o, index) in 6" :key="o" >
+                            <el-card :body-style="{ padding: '0px' }" style="margin-bottom: 20px;margin-right: 20px">
+                                <img src="../../static/kylin.jpg" class="image">
+                                <div style="padding: 14px;">
+                                    <span style="font-weight: bold">事件：陌生人检测</span>
+                                    <div class="bottom clearfix">
+                                        <span style="float: left">陌生人进入！{{index}}</span>
+                                        <span style="color: #999;float: right">{{'2020/7/6 00:00:00'}}</span>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </el-col>
+                    </el-row>
                 </div>
             </el-card>
             <el-card shadow="hover" :body-style="{ padding: '0px' }" style="margin-top: 20px; min-height: 300px;">
-                <div class="titleDiv">
+                <div class="titleDiv" style="background-color: rgb(254,240,240)">
                     <p class="titleMsg" >禁入区域检测</p>
                 </div>
-                <div  style="display: table; width: 100%; padding-left: 10px; padding-top: 20px; padding-bottom:15px; padding-right: 10px;text-align: center">
-                    <div style="display: table-row">
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                        <div class="tableTitle">
-                        </div>
-                    </div>
+                <div style="display: table; width: 100%; padding: 20px 15px 15px;text-align: center">
+                    <el-row>
+                        <el-col :span="8" v-for="(o, index) in 6" :key="o" >
+                            <el-card :body-style="{ padding: '0px' }" style="margin-bottom: 20px;margin-right: 20px">
+                                <img src="../../static/kk.jpg" class="image">
+                                <div style="padding: 14px;">
+                                    <span style="font-weight: bold">事件：禁入区域检测</span>
+                                    <div class="bottom clearfix">
+                                        <span style="float: left">闯入禁入区域！{{index}}</span>
+                                        <span style="color: #999;float: right">{{'2020/7/6 00:00:00'}}</span>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </el-col>
+                    </el-row>
                 </div>
             </el-card>
         </div>
@@ -159,10 +179,6 @@
         font-family: 黑体;
         font-size: 20px;
     }
-    .showAll{
-        font-size: 12px;
-        color: #11A0FF;
-    }
     .tableTitle{
         display: table-cell;
         font-size: 15px;
@@ -171,37 +187,34 @@
         font-weight: bold;
 
     }
-    .tableCell{
-        display: table-cell;
-        font-size: 15px;
-        padding: 5px;
-    }
-    .fist{
-        display: flex;
-        position: relative;
-        top: -5px;
-    }
-    .fist::before{
-        display: block;
-        content: "";
-        height: 10px;
-        width: 10px;
-        border-radius: 5px;
-
-        background-color: #5b8bff;
-        position: relative;
-        left: -25px;
-        top: 5px;
-    }
-    .showAll:hover{
-        cursor: pointer;
-    }
     .bodyClass{
         min-width: 850px;
         margin-left: 150px;
         padding: 20px;
     }
-    .grayLine{
-        background-color: #e4efff;
+    .bottom {
+        margin-top: 13px;
+        line-height: 12px;
+    }
+
+    .button {
+        padding: 0;
+        float: right;
+    }
+
+    .image {
+        width: 100%;
+        height: 200px;
+        display: block;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+
+    .clearfix:after {
+        clear: both
     }
 </style>
