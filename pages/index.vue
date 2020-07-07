@@ -43,6 +43,7 @@ import Cookies from 'js-cookie';
 import Pro from '../api/API_PRO'
 import API from '../api'
 import { getBrowser } from "../components/util";
+import qs from 'qs'
 
 export default {
   components: {
@@ -74,61 +75,80 @@ export default {
   mounted() {
       // 先登录
       this.misLogin();
-
-
-
   },
-  beforeUpdate() {
-
-  },
-
   methods: {
-    async submitForm (loginForm) {
+    submitForm (loginForm) {
       this.$refs[loginForm].validate((valid) => {
         if (!valid) {
           return
         }
         this.loadingLogin = true
-      })
-      let result = await this.$store.dispatch('login', {
-        account: this.loginForm.userName,
+      });
+      axios.post('http://192.168.96.129:5050/api/login', qs.stringify({
+        username: this.loginForm.userName,
         password: this.loginForm.pwd
-      })
-      if (result.code) {
-        if (result.code === 100310) {
+      })).then(successResponse=>{
+        if (successResponse.data.code === '200') {
           this.loadingLogin = false
-          alert('密码／用户名不能为空')
-          console.log('密码／用户名不能为空')
-          return
-        } else if (result.code === 300101) {
+          this.$router.push({path: `/main/admin`})
+        } else if (successResponse.data.code === 201) {
+          console.log(successResponse.data.code)
           this.loadingLogin = false
-          alert('密码不正确')
-          console.log('密码不正确')
+          alert('密码不正确！')
           return
-        } else if (result.code === 300100) {
-          console.log(result)
+        } else if (successResponse.data.code === '404') {
+          console.log(successResponse.data.code)
           this.loadingLogin = false
           alert('用户名不存在！')
           return
-        } else if(result.code === 300104){
-          console.log(result)
-          this.loadingLogin = false
-          alert('账户无效！')
-          return
-        }else {
-          console.log(result)
+        } else {
+          console.log(successResponse.data.code)
           return
         }
-      }
 
-      let type = Cookies.get('type');
+      })
 
-      if (type === '0') {
-        this.$router.push({path: `/main/admin`})
-      } else if (type === '1') {
-        this.$router.push({path: `/main/user`})
-      }
+      // let type = Cookies.get('type');
+      //
+      // if (type === '0') {
+      //   this.$router.push({path: `/main/admin`})
+      // } else if (type === '1') {
+      //   this.$router.push({path: `/main/user`})
+      // }
     },
+
+
+    // async submitForm (loginForm) {
+    //   this.$refs[loginForm].validate((valid) => {
+    //     if (!valid) {
+    //       return
+    //     }
+    //     this.loadingLogin = true
+    //   });
+    //   let result = await this.$store.dispatch('login', {
+    //     username: this.loginForm.userName,
+    //     password: this.loginForm.pwd
+    //   })
+    //   if (result.code) {
+    //     if (result.code === 200) {
+    //       this.loadingLogin = false
+    //       this.$router.push({path: `/main/admin`})
+    //     } else if (result.code === 201) {
+    //       this.loadingLogin = false
+    //       alert('密码不正确')
+    //       console.log('密码不正确')
+    //       return
+    //     } else if (result.code === 404) {
+    //       console.log(result)
+    //       this.loadingLogin = false
+    //       alert('用户名不存在！')
+    //       return
+    //     } else {
+    //       console.log(result)
+    //       return
+    //     }
+    //   }
+    // },
 
     userLogin(){
       const client_id = 'FJXPslUxKPuB16fGRWSzVusxwvNadiWLG3sTJvyX';
