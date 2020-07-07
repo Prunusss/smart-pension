@@ -1,2 +1,2 @@
-# smart-pension
-2020 BJTU小学期
+# smart-pension 前端
+2020 BJTU软件学院小学期 02班
