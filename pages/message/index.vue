@@ -2,7 +2,7 @@
     <div class="outdiv">
         <cli-title class="titleClass" ></cli-title>
         <cli-menu class="menuClass" :pageIndex="pageIndex" ></cli-menu>
-        <div class="bodyClass" v-if="ifshow">
+        <div class="bodyClass">
             <el-card shadow="hover" :body-style="{ padding: '0px' }" style="margin-top: 60px; min-height: 300px;">
                 <div class="titleDiv">
                     <p class="titleMsg" >情感分析检测</p>
@@ -11,7 +11,7 @@
                     <el-row>
                         <el-col :span="8" v-for="(o, index) in 6" :key="o" >
                             <el-card :body-style="{ padding: '0px' }" style="margin-bottom: 20px;margin-right: 20px">
-                                <img src="../../static/kk.jpg" class="image">
+                                <img src="../../static/kk.jpg" class="image" @click="showEmo">
                                 <div style="padding: 14px;">
                                     <span style="font-weight: bold">事件：情感检测</span>
                                     <div class="bottom clearfix">
@@ -109,6 +109,12 @@
                 </div>
             </el-card>
         </div>
+        <el-dialog title="" :visible.sync="show_emotion" :modal="true" width="40%" >
+            <div style="font-family:'黑体';font-weight: bold; word-spacing: 10px;font-size: 20px;margin-top: -40px">情感分析</div>
+            <div style="margin: 10px -20px; border-style: solid none solid none">
+            <div v-loading="isLoading" style="margin:15px 20px 0 30px;width: 450px;height:320px;" id="echartss"></div>
+            </div>
+        </el-dialog>
 
     </div>
 </template>
@@ -116,48 +122,121 @@
 <script>
     import cliTitle from '~/components/base/cliTitle.vue'
     import cliMenu from '~/components/base/cliMenu.vue'
-    import notifyTable from '~/components/notify/notify_list_table.vue'
-    import notifyStuTable from '~/components/notify/notify_list_table_stu.vue'
     import Cookies from 'js-cookie'
+    import echarts from 'echarts'
     import API from '../../api'
-    import Position from "../../components/base/position";
 
 
     export default {
         name: "notify_list",
         //通知列表
-        components: {Position, cliTitle, cliMenu, notifyTable, notifyStuTable},
+        components: {cliTitle, cliMenu},
         data(){
             return{
                 pageIndex: "6",
-                token: Cookies.get('token'),
-                type: Cookies.get('type'),
-                ifshow:false,
-                /**
-                 *
-                 *  2   校级通知列表
-                 *  1   普通通知列表
-                 */
-                showType:2,
-                position: {
-                    name: '通知公告栏',
-                    haveBack: false,
-
-                },
+                show_emotion: false,
+                isLoading: true,
             }
         },
         mounted:function () {
-            // if (Number.parseInt(Cookies.get("type")) === 1){
-            //     this.showType = 2
-            //
-            // } else {
-            //     this.showType = 1
-            // }
-            this.ifshow = true
         },
         methods:{
             clickBack(){
                 this.$router.push({path: `/main/admin`})
+            },
+            showEmo(){
+                this.show_emotion = true;
+                if (document.getElementById('echartss')){
+                    // 基于准备好的dom，初始化echarts实例
+                    let myChart = echarts.init(document.getElementById('echartss'))
+                    // 绘制图表，this.echarts1_option是数据
+                    myChart.setOption({
+                        // color: ['#DDF1FF', 'rgb(239,242,239)','rgb(106,184,216)', 'rgb(254,240,240)','rgb(253,246,236)'],/*饼状图的颜色*/
+                        color: ['rgb(3,149,255)', 'rgb(73,136,248)','rgb(138,215,246)', 'rgb(199,237,248)','rgb(162,238,243)'],
+                        //标题
+                        title: {
+                            text: '情感分析',
+                            subtext:'各种情绪占比',
+                            x:'center',
+                            textStyle: {
+                                // color: '#ccc',
+                                // color: 'black',
+                                // fontStyle:'italic'//标题字体
+                        }
+                        },
+                        //弹窗，响应鼠标指向，显示具体细节
+                        tooltip : {
+                            trigger: 'item',//以具体项目触发弹窗
+                            /*
+                            内容格式器，一共有abcd四个代号，例如在饼图中，{a}指系列，即流量来源，{b}指数据项目，如搜索引擎，{c}指数值，如
+                            value，{d}百分比。{x}本身代表了相应字符，可以和其他字符拼凑，在弹窗中显示
+                            */
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        //图例，选择要显示的项目
+                        legend:{
+                            orient:'vertical',
+                            left:'left',
+                            textStyle:{
+                            // color:'#c8c8d0',
+                            color: 'black',
+                            },
+                            data:['开心','伤心','惊讶','生气','害怕']  //注意要和数据的name相对应
+                        },
+                        //工具箱
+                        toolbox:{
+                            show:true,//显示工具箱
+                            feature:{
+                                dataView:{show:true}, //以文字形式显示数据
+                                restore:{show:true},   //还原
+                                saveAsImage:{show:true},  //保存图片
+                            }
+                        },
+                        //数据
+                        series : [
+                            {
+                                name:'情绪',
+                                type:'pie',
+                                radius : '65%',
+                                center: ['50%', '55%'],
+                                data:[
+                                    {value:10, name:'开心'},
+                                    {value:3, name:'伤心'},
+                                    {value:5, name:'惊讶'},
+                                    {value:7, name:'生气'},
+                                    {value:15, name:'害怕'}
+                                ],
+                                itemStyle: {
+                                    emphasis: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    },
+                                    normal: {
+                                        borderWidth: 2,/*隔开的白色边界*/
+                                        borderColor: '#fff',/*border*/
+                                        // labelLine :{show:true}
+                                    },
+                                },
+                                label: { //饼图图形的文本标签
+                                    normal: {  //下同，normal指在普通情况下样式，而非高亮时样式
+                                        textStyle: {
+                                            color: 'rgb(3,149,255)'
+                                        }
+                                    }
+                                },
+                                labelLine: {  //引导线样式
+                                    normal: {
+                                        lineStyle: {
+                                            color: 'rgb(3,149,255)'
+                                        },
+                                    }
+                                },
+                            }
+                        ],
+                    });
+                    this.isLoading = false;
+                }
             },
         }
 

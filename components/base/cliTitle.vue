@@ -1,7 +1,7 @@
 <template >
     <div id="out_div" style="display: table; box-shadow: 0 0 5px rgba(158,158,158,0.7); text-align: center">
       <img src="../../assets/image/s1.png" height="80%" style="position: absolute; top: 7px; left: 9px"/>
-      <p style="  font-family:'黑体'; word-spacing: 10px;font-size: 25px; color: rgb(255,255,255);">智慧养老系统</p>
+      <p style="  font-family:'黑体'; word-spacing: 10px;font-size: 25px; color: rgb(255,255,255);"> </p>
         <i class="el-icon-question" style="position: absolute; top: 20px; right: 70px;font-size:20px;color: white"></i>
         <i class="el-icon-message" style="position: absolute; top: 20px; right: 110px;font-size:20px;color: white"></i>
         <i class="el-icon-bell" style="position: absolute; top: 20px; right: 150px;font-size:20px;color: white"></i>
