@@ -2,8 +2,8 @@ export default {
     /**
      * 测试
      * */
-    baseURL: 'http://127.0.0.1:8083/',
-    uploadURL: 'http://127.0.0.1:8083/',
+    baseURL: 'http://192.168.96.129:5050/',
+    uploadURL: 'http://192.168.96.129:5050/',
 
 
     method: 'post',
@@ -19,7 +19,7 @@ export default {
     /**
      * 账户
      */
-    loginApi: {url: 'user/account/login'}, // 用户登录
+    loginApi: {url: 'api/login'}, // 用户登录
     register: {url: 'user/account/register'}, // 用户注册
     Changepw: {url: 'user/account/changepw'}, // 修改密码
     Getinfo: {url: 'user/information/get-info'}, // 获取用户信息
