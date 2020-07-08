@@ -10,8 +10,6 @@
           欢迎使用智慧养老系统!
         </p>
         <el-form :model="loginForm" :rules="loginRule" ref="loginForm" :label-position="labelPosition">
-
-
           <el-form-item  prop="userName" class="login-item" style="margin: 0">
             <el-input type="userName" v-model="loginForm.userName" placeholder="账号" @keyup.enter.native="submitForm('loginForm')"></el-input>
           </el-form-item>
@@ -22,9 +20,6 @@
             <el-button type="primary" @click="submitForm('loginForm')" class="submitBtn" round >登录</el-button>
           </el-form-item>
         </el-form>
-
-<!--        <el-button style="margin-top: 4rem" type="primary" @click="userLogin()" class="submitBtn" round v-loading.fullscreen.lock="loadingLogin">登陆</el-button>-->
-
       </el-tab-pane>
 
     </el-tabs>
@@ -116,95 +111,6 @@ export default {
       //   this.$router.push({path: `/main/user`})
       // }
     },
-
-
-    // async submitForm (loginForm) {
-    //   this.$refs[loginForm].validate((valid) => {
-    //     if (!valid) {
-    //       return
-    //     }
-    //     this.loadingLogin = true
-    //   });
-    //   let result = await this.$store.dispatch('login', {
-    //     username: this.loginForm.userName,
-    //     password: this.loginForm.pwd
-    //   })
-    //   if (result.code) {
-    //     if (result.code === 200) {
-    //       this.loadingLogin = false
-    //       this.$router.push({path: `/main/admin`})
-    //     } else if (result.code === 201) {
-    //       this.loadingLogin = false
-    //       alert('密码不正确')
-    //       console.log('密码不正确')
-    //       return
-    //     } else if (result.code === 404) {
-    //       console.log(result)
-    //       this.loadingLogin = false
-    //       alert('用户名不存在！')
-    //       return
-    //     } else {
-    //       console.log(result)
-    //       return
-    //     }
-    //   }
-    // },
-
-    userLogin(){
-      const client_id = 'FJXPslUxKPuB16fGRWSzVusxwvNadiWLG3sTJvyX';
-      const redirect_uri = Pro.qianduanURL;
-      const url = `https://cas.bjtu.edu.cn/o/authorize?client_id=${client_id}&response_type=code&redirect_uri=${redirect_uri}`
-      window.location.replace(url);
-    },
-
-    async misLogin(){
-      const urlCode = this.$route.query.code;
-
-      if (urlCode){
-        this.loadingLogin = true
-
-        const data = {code : urlCode};
-        let result = await this.$store.dispatch('misLogin', data)
-        if (result.code) {
-          if (result.code === 100310) {
-            this.loadingLogin = false
-            alert('密码／用户名不能为空')
-            console.log('密码／用户名不能为空')
-            return
-          } else if (result.code === 300101) {
-            this.loadingLogin = false
-            alert('密码不正确')
-            console.log('密码不正确')
-            return
-          } else if (result.code === 300100) {
-            console.log(result)
-            this.loadingLogin = false
-            alert('用户名不存在！')
-            return
-          } else if(result.code === 300104){
-            console.log(result)
-            this.loadingLogin = false
-            alert('账户无效！')
-            return
-          }else {
-            console.log(result)
-            return
-          }
-        }else {
-          Cookies.set('misCode', urlCode);
-          const isPhone = getBrowser() === 'phone';
-          if (!isPhone) {
-            this.$router.push({path: `/main/user`});
-          } else {
-            this.$router.push({path: `/phone/main`});
-          }
-        }
-
-        this.loadingLogin = false;
-
-      }
-
-    }
   }
 }
 </script>
