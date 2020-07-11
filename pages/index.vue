@@ -68,8 +68,7 @@ export default {
   },
 
   mounted() {
-      // 先登录
-      this.misLogin();
+
   },
   methods: {
     submitForm (loginForm) {
@@ -79,7 +78,7 @@ export default {
         }
         this.loadingLogin = true
       });
-      axios.post('http://192.168.96.129:5050/api/login', qs.stringify({
+      axios.post('http://192.168.96.130:5050/api/login', qs.stringify({
         username: this.loginForm.userName,
         password: this.loginForm.pwd
       })).then(successResponse=>{

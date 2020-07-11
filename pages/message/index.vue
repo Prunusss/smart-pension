@@ -136,15 +136,39 @@
                 pageIndex: "6",
                 show_emotion: false,
                 isLoading: true,
+                vueEmoData:[],
             }
         },
         mounted:function () {
+            let emotion = {'愤怒': 91.283, '厌恶': 5.008, '恐惧': 3.523, '开心': 0.009, '正常': 0.008, '伤心': 0.032, '惊讶': 0.135};
+            let emKeys = ['愤怒','厌恶','恐惧','开心','正常','伤心','惊讶'];
+            // let vueEmoData = [];
+
+            for(var i=0;i<7;i++) { //便历每一条数据
+                this.vueEmoData.push({
+                    name:emKeys[i],
+                    value:emotion[emKeys[i]]
+                });
+            }
+            console.log(this.vueEmoData);
         },
         methods:{
             clickBack(){
                 this.$router.push({path: `/main/admin`})
             },
             showEmo(){
+                /*
+                *': {
+                * 'anger': 96.283,
+                * 'disgust': 0.008,
+                * 'fear': 3.523,
+                * 'happiness': 0.009,
+                * 'neutral': 0.008,
+                * 'sadness': 0.032,
+                * 'surprise': 0.135
+                * }
+                */
+
                 this.show_emotion = true;
                 if (document.getElementById('echartss')){
                     // 基于准备好的dom，初始化echarts实例
@@ -156,21 +180,14 @@
                         //标题
                         title: {
                             text: '情感分析',
-                            subtext:'各种情绪占比',
+                            // subtext:'各种情绪占比',
                             x:'center',
                             textStyle: {
-                                // color: '#ccc',
-                                // color: 'black',
-                                // fontStyle:'italic'//标题字体
                         }
                         },
                         //弹窗，响应鼠标指向，显示具体细节
                         tooltip : {
                             trigger: 'item',//以具体项目触发弹窗
-                            /*
-                            内容格式器，一共有abcd四个代号，例如在饼图中，{a}指系列，即流量来源，{b}指数据项目，如搜索引擎，{c}指数值，如
-                            value，{d}百分比。{x}本身代表了相应字符，可以和其他字符拼凑，在弹窗中显示
-                            */
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
                         //图例，选择要显示的项目
@@ -181,7 +198,7 @@
                             // color:'#c8c8d0',
                             color: 'black',
                             },
-                            data:['开心','伤心','惊讶','生气','害怕']  //注意要和数据的name相对应
+                            data:['愤怒','厌恶','恐惧','开心','正常','伤心','惊讶']  //注意要和数据的name相对应
                         },
                         //工具箱
                         toolbox:{
@@ -197,15 +214,16 @@
                             {
                                 name:'情绪',
                                 type:'pie',
-                                radius : '65%',
-                                center: ['50%', '55%'],
-                                data:[
-                                    {value:10, name:'开心'},
-                                    {value:3, name:'伤心'},
-                                    {value:5, name:'惊讶'},
-                                    {value:7, name:'生气'},
-                                    {value:15, name:'害怕'}
-                                ],
+                                radius : '60%',
+                                center: ['50%', '60%'],
+                                // data:[
+                                //     {value:10, name:'开心'},
+                                //     {value:3, name:'伤心'},
+                                //     {value:5, name:'惊讶'},
+                                //     {value:7, name:'生气'},
+                                //     {value:15, name:'害怕'}
+                                // ],
+                                data:this.vueEmoData,
                                 itemStyle: {
                                     emphasis: {
                                         shadowBlur: 10,
