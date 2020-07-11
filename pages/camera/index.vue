@@ -20,6 +20,7 @@
                     <img src="../../static/3.png" style="width: 440px;height: 330px;">
                 </div>
             </el-card>
+
         </div>
 
     </div>
@@ -59,7 +60,18 @@
         mounted:function () {
             this.currentTime();
             console.log(this.gettime);
-            this.ifshow = true
+            this.ifshow = true;
+
+            this.$message({
+                message: '恭喜你，这是一条成功消息',
+                type: 'success'
+            });
+            this.$message({
+                message: '警告哦，这是一条警告消息',
+                type: 'warning'
+            });
+            // this.$message.error('错了哦，这是一条错误消息');
+
         },
         methods:{
             getTime(){
@@ -105,6 +117,13 @@
         min-width: 850px;
         margin-left: 150px;
         padding: 20px;
+    }
+</style>
+<style>
+    .el-message{
+        left: 88%;
+        top:70px;
+        min-width: 260px;
     }
 </style>
 

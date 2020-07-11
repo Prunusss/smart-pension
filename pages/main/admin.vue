@@ -109,16 +109,6 @@
             </el-card>
             <div>
 
-<!--                <div class="body2">-->
-<!--                    <position :positionName="position2.name1"-->
-<!--                              :have-back="position2.haveBack"-->
-<!--                              :rightName="position2.name2"-->
-<!--                              @positionBack="click2"-->
-<!--                              style="font-size:22px"-->
-<!--                    ></position>-->
-<!--                    <list :roleType="roleType" style="width: 100%; margin-top: 20px;margin-bottom: 30px"></list>-->
-<!--                </div>-->
-
             </div>
         </div>
 
@@ -142,20 +132,6 @@
         data(){
             return{
                 pageIndex: "1",
-                position1: {
-                    name1: '通知',
-                    name2: '更多',
-                    haveBack: true,
-
-                },
-                position2: {
-                    name1: '问卷收集',
-                    name2: '更多',
-                    haveBack: true,
-
-                },
-
-
                 viewType: false,
                 showType:2,
                 roleType: Cookies.get('type')
