@@ -31,6 +31,7 @@
     import cliMenu from '~/components/base/cliMenu.vue'
     import Cookies from 'js-cookie'
     import API from '../../api'
+    import axios from "axios";
 
 
     export default {
@@ -55,21 +56,24 @@
                     haveBack: false,
 
                 },
+                activities:[],
+                active_num:0,
             }
         },
         mounted:function () {
             this.currentTime();
+            // setInterval(this.getNotify,1000);
             console.log(this.gettime);
             this.ifshow = true;
-
-            this.$message({
-                message: '恭喜你，这是一条成功消息',
-                type: 'success'
-            });
-            this.$message({
-                message: '警告哦，这是一条警告消息',
-                type: 'warning'
-            });
+            //
+            // this.$message({
+            //     message: '恭喜你，这是一条成功消息',
+            //     type: 'success'
+            // });
+            // this.$message({
+            //     message: '警告哦，这是一条警告消息',
+            //     type: 'warning'
+            // });
             // this.$message.error('错了哦，这是一条错误消息');
 
         },
@@ -83,6 +87,24 @@
                 let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
                 let ss = new Date().getSeconds()<10 ? '0'+new Date().getSeconds() : new Date().getSeconds();
                 _this.gettime = yy+'/'+mm+'/'+dd+' '+hh+':'+mf+':'+ss;
+            },
+            getNotify(){
+                console.log("进入了轮询的方法");
+                axios.get('http://192.168.121.130:5050/api/eventlist').then(resp => {
+                    if (resp.data.code === 'ERROR') {
+                        alert('出现系统错误！')
+                        return
+
+                    }else{
+
+                        this.activities  = resp.data;
+                        if (this.activities.length > this.active_num){
+                            this.active_num = this.activities.length;
+                            this.$message.error(this.activities[this.active_num - 1].desc);
+                        }
+
+                    }
+                })
             },
             currentTime(){
                 setInterval(this.getTime,500)
